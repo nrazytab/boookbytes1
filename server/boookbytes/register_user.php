@@ -15,10 +15,10 @@ $password = sha1($_POST['password']);
 $sqlinsert = "INSERT INTO `tbl_users`(`user_email`, `user_name`, `user_password`) VALUES ('$email','$name','$password')";
 
 if ($conn->query($sqlinsert) === TRUE) {
-	$response = array('status' => 'success', 'data' => null);
+	$response = array('status' => 'success', 'data' => $sqlinsert);
     sendJsonResponse($response);
 }else{
-	$response = array('status' => 'failed', 'data' => null);
+	$response = array('status' => 'failed', 'data' => $sqlinsert);
 	sendJsonResponse($response);
 }
 

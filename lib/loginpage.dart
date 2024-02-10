@@ -3,6 +3,8 @@
 import 'package:boookbytes/shared/myserverconfig.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
+import 'dart:async';
+import 'package:boookbytes/registrationpage.dart';
 import 'package:boookbytes/mainpage.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -119,15 +121,27 @@ class _LoginPageState extends State<LoginPage> {
                               style: ElevatedButton.styleFrom(
                               primary: Colors.blue, 
                               ),
-                                                          child: const Text(
-                              "Login",
+                              child: const Text(
+                                "Login",
                               style: TextStyle(
                                 color: Colors.white, 
                             ),
-                              )
+                              ),
                             )
                           ],
-                        )
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        GestureDetector(
+                          onTap: _goToRegister,
+                          child: const Text(
+                            "New account?",
+                            style: TextStyle(
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -172,6 +186,11 @@ class _LoginPageState extends State<LoginPage> {
     });
   }
 
+  void _goToRegister() {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (content) => const RegistrationPage()));
+  }
+  
   void saveremovepref(bool value) async {
     String email = _emailditingController.text;
     String password = _passEditingController.text;

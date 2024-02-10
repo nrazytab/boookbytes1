@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:boookbytes/billscreen.dart';
 import 'package:boookbytes/models/cart.dart';
 import 'package:boookbytes/models/user.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +40,13 @@ class _CartPageState extends State<CartPage> {
         ),
       ),
       body: Container(
-        color: Color.fromARGB(255, 252, 174, 200), // Set background color to pink
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color.fromARGB(255, 255, 29, 134), Colors.white],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
         child: cartList.isEmpty
           ? const Center(child: Text("No Data"))
           : Column(
@@ -184,11 +191,19 @@ class _CartPageState extends State<CartPage> {
                     ),
                     const SizedBox(height: 16),
                     ElevatedButton(
-                    onPressed: () {
-                      // Implement checkout logic here
-                    },
+                      onPressed: () async {
+                            await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (content) => BillScreen(
+                                          user: widget.user,
+                                          totalprice: total,
+                                        )));
+                            loadUserCart();
+                          },
+                  
                     style: ElevatedButton.styleFrom(
-                      primary: Color.fromARGB(255, 196, 26, 131),
+                      primary: Colors.pink,
                       onPrimary: Colors.white,
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       shape: RoundedRectangleBorder(
@@ -417,3 +432,4 @@ class _CartPageState extends State<CartPage> {
     _groupedCartItems = groupedMap.values.toList();
   }
 }
+

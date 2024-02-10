@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import '../models/user.dart';
 import '../mainpage.dart';
 import 'EnterExitRoute.dart';
+import 'package:boookbytes/shared/myserverconfig.dart';
+import 'package:cached_network_image/cached_network_image.dart'; 
 
 class MyDrawer extends StatefulWidget {
   final String page;
@@ -30,18 +32,22 @@ class _MyDrawerState extends State<MyDrawer> {
             decoration: const BoxDecoration(
               color: Colors.pink,
             ),
-            currentAccountPicture: const CircleAvatar(
-                //foregroundImage: AssetImage('assets/images/profile.png'),
-                backgroundColor: Colors.white),
+            currentAccountPicture: CircleAvatar(
+              backgroundImage: CachedNetworkImageProvider(
+                "${MyServerConfig.server}/bookbytes/assets/books/userid.jpg",
+              ),
+              backgroundColor: Colors.white,
+            ),
             accountName: Text(widget.user.username.toString()),
             accountEmail: Padding(
               padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
               child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(widget.user.useremail.toString()),
-                    const Text("azGroup")
-                  ]),
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(widget.user.useremail.toString()),
+                  const Text("azGroup")
+                ],
+              ),
             ),
           ),
           ListTile(
@@ -49,23 +55,20 @@ class _MyDrawerState extends State<MyDrawer> {
             title: const Text('Books'),
             onTap: () {
               Navigator.pop(context);
-              // Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //         builder: (content) => const MainPage()));
               print(widget.page.toString());
               if (widget.page.toString() == "books") {
-                //  Navigator.pop(context);
                 return;
               }
               Navigator.pop(context);
               Navigator.push(
-                  context,
-                  EnterExitRoute(
-                      exitPage: MainPage(
-                        user: widget.user,
-                      ),
-                      enterPage: MainPage(user: widget.user)));
+                context,
+                EnterExitRoute(
+                  exitPage: MainPage(
+                    user: widget.user,
+                  ),
+                  enterPage: MainPage(user: widget.user)
+                )
+              );
             },
           ),
           ListTile(
@@ -75,22 +78,20 @@ class _MyDrawerState extends State<MyDrawer> {
               Navigator.pop(context);
               print(widget.page.toString());
               if (widget.page.toString() == "seller") {
-                // Navigator.pop(context);
                 return;
               }
               Navigator.pop(context);
-
-              // Navigator.push(context,
-              //     MaterialPageRoute(builder: (content) => const SellPage()));
               Navigator.push(
-                  context,
-                  EnterExitRoute(
-                      exitPage: OrderPage(
-                        userdata: widget.user,
-                      ),
-                      enterPage: OrderPage(
-                        userdata: widget.user,
-                      )));
+                context,
+                EnterExitRoute(
+                  exitPage: OrderPage(
+                    userdata: widget.user,
+                  ),
+                  enterPage: OrderPage(
+                    userdata: widget.user,
+                  )
+                )
+              );
             },
           ),
           ListTile(
@@ -100,18 +101,16 @@ class _MyDrawerState extends State<MyDrawer> {
               print(widget.page.toString());
               Navigator.pop(context);
               if (widget.page.toString() == "community") {
-                //  Navigator.pop(context);
                 return;
               }
               Navigator.pop(context);
-
-              // Navigator.push(context,
-              //     MaterialPageRoute(builder: (content) => const ProfilePage()));
               Navigator.push(
-                  context,
-                  EnterExitRoute(
-                      exitPage: CommunityPage(userdata: widget.user),
-                      enterPage: CommunityPage(userdata: widget.user)));
+                context,
+                EnterExitRoute(
+                  exitPage: CommunityPage(userdata: widget.user),
+                  enterPage: CommunityPage(userdata: widget.user)
+                )
+              );
             },
           ),
           ListTile(
@@ -121,18 +120,16 @@ class _MyDrawerState extends State<MyDrawer> {
               print(widget.page.toString());
               Navigator.pop(context);
               if (widget.page.toString() == "cart") {
-                //  Navigator.pop(context);
                 return;
               }
               Navigator.pop(context);
-
-              // Navigator.push(context,
-              //     MaterialPageRoute(builder: (content) => const ProfilePage()));
               Navigator.push(
-                  context,
-                  EnterExitRoute(
-                      exitPage: CartPage(user: widget.user),
-                      enterPage: CartPage(user: widget.user)));
+                context,
+                EnterExitRoute(
+                  exitPage: CartPage(user: widget.user),
+                  enterPage: CartPage(user: widget.user)
+                )
+              );
             },
           ),
           ListTile(
@@ -142,18 +139,16 @@ class _MyDrawerState extends State<MyDrawer> {
               print(widget.page.toString());
               Navigator.pop(context);
               if (widget.page.toString() == "account") {
-                //  Navigator.pop(context);
                 return;
               }
               Navigator.pop(context);
-
-              // Navigator.push(context,
-              //     MaterialPageRoute(builder: (content) => const ProfilePage()));
               Navigator.push(
-                  context,
-                  EnterExitRoute(
-                      exitPage: ProfilePage(userdata: widget.user),
-                      enterPage: ProfilePage(userdata: widget.user)));
+                context,
+                EnterExitRoute(
+                  exitPage: ProfilePage(userdata: widget.user),
+                  enterPage: ProfilePage(userdata: widget.user)
+                )
+              );
             },
           ),
           const Divider(

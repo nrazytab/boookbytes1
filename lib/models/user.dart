@@ -4,13 +4,15 @@ class User {
   String? username;
   String? userpassword;
   String? userdatereg;
+  String? profileImagePath;
 
   User(
       {this.userid,
       this.useremail,
       this.username,
       this.userpassword,
-      this.userdatereg});
+      this.userdatereg,
+      this.profileImagePath,});
 
   User.fromJson(Map<String, dynamic> json) {
     userid = json['userid'];
